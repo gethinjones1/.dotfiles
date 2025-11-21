@@ -26,11 +26,6 @@ map("n", "<C-l>", "<C-w>l", silent)
 map("n", "<C-j>", "<C-w>j", silent)
 map("n", "<C-k>", "<C-w>k", silent)
 
--- Clipboard helpers / delete behavior
--- Delete line to system clipboard with DD
-map("n", "DD", '"+dd', { noremap = true, silent = true, desc = "Delete line to system clipboard" })
--- Make `dd` NOT yank (black-hole)
-map("n", "dd", '"_dd', { noremap = true, silent = true, desc = "Delete line without yanking" })
 map({ "n", "v" }, "<Left>", "", { noremap = true, silent = true })
 map({ "n", "v" }, "<Right>", "", { noremap = true, silent = true })
 map({ "n", "v" }, "<Up>", "", { noremap = true, silent = true })

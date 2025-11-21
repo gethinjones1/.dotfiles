@@ -12,10 +12,8 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # ----- Language / tool PATHs (keep PATH tidy) -----
-export PATH="$PATH:/usr/local/lib/node_modules/.bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH="$HOME/.fly/bin:$PATH"
-export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$HOME/.config/herd-lite/bin:$PATH"
 export PATH="$PATH:$HOME/go/bin"
 # Deduplicate PATH (zsh feature)
@@ -23,18 +21,7 @@ typeset -U path PATH
 
 # ----- NVM: lazy-load + no heavy bash completion -----
 export NVM_DIR="$HOME/.nvm"
-
-# Lazy loader so nvm/node/npm don't load until first use
-load-nvm() {
-  # load nvm core only; skip bash_completion (slow)
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
-}
-
-nvm()     { unset -f nvm;     load-nvm; nvm "$@"; }
-node()    { unset -f node;    load-nvm; node "$@"; }
-npm()     { unset -f npm;     load-nvm; npm "$@"; }
-npx()     { unset -f npx;     load-nvm; npx "$@"; }
-corepack(){ unset -f corepack; load-nvm; corepack "$@"; }
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Optional: auto-use .nvmrc on cd (quiet)
 autoload -Uz add-zsh-hook
@@ -48,6 +35,7 @@ add-zsh-hook chpwd use-nvmrc
 alias chrome='open -a "Google Chrome"'
 alias spotify='open -a "Spotify"'
 alias lock="osascript -e 'tell application \"System Events\" to keystroke \"q\" using {control down, command down}'"
+alias python="python3"
 
 BOOT_FLAG="/tmp/iterm_boot_flag"
 
