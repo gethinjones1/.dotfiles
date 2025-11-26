@@ -54,3 +54,4 @@ if [[ -n $NVIM ]]; then
   [[ -r ~/.zprofile ]] && source ~/.zprofile
   export TERM=xterm-256color
 fi
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
