@@ -1,0 +1,42 @@
+
+{
+  "Natural Source Header": {
+    "scope": "natural",
+    "prefix": "nsh",
+    "body": [
+      "* >Natural Source Header 000000",
+      "* :Mode S",
+      "* :CP",
+      "* :LineIncrement 10",
+      "* <Natural Source Header"
+    ]
+  },
+  "Header Block": {
+    "scope": "natural",
+    "prefix": "header",
+    "body": [
+      "************************************************************************",
+      "* Programmer       : ${1}          Date : ${CURRENT_YEAR}/${CURRENT_MONTH}/${CURRENT_DATE}",
+      "* Programs         : ${TM_FILENAME_BASE}",
+      "* Description      : ${3}",
+      "*                  : ${4}",
+      "* Parameters       : ${5}",
+      "************************************************************************"
+    ]
+  },
+  "Changelog": {
+    "scope": "natural",
+    "prefix": [
+      "changelog"
+    ],
+    "body": [
+      "* Version          : ${1:6000}                 Programmer   : ${2}",
+      "* MSC No           : ${3:J______}              RFC No       : ${4:____}",
+      "* Date             : ${CURRENT_DATE}/${CURRENT_MONTH}/${CURRENT_YEAR}           Live Release : ${5}",
+      "* Related programs : ${6}",
+      "* Description      : ${7}",
+      "************************************************************************"
+    ],
+    "description": "Changelog Entry"
+  }
+}

@@ -9,6 +9,8 @@ return {
       ["Select All"] = "<C-a>",
       ["Skip"] = "<C-x>",
       ["Remove Region"] = "<C-p>",
+      ["Add Cursor Down"] = "<C-d>",
+      ["Add Cursor Up"] = "<C-u>",
     }
   end,
 }

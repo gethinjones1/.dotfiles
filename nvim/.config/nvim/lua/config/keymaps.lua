@@ -4,7 +4,10 @@
 -- ~/.config/nvim/lua/config/keymaps.lua
 local map = vim.keymap.set
 local silent = { silent = true, noremap = true }
-
+map("n", "<leader>yf", function()
+  vim.fn.setreg("+", vim.fn.expand("%:t"))
+  vim.notify("Filename copied")
+end, { desc = "Yank filename" })
 -- Explorer (netrw)
 map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open netrw (project view)" })
 

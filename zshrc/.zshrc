@@ -11,6 +11,8 @@ fpath+=(/opt/homebrew/share/zsh/site-functions)
 autoload -U promptinit; promptinit
 prompt pure
 
+source <(fzf --zsh)
+
 # ----- Language / tool PATHs (keep PATH tidy) -----
 export PATH="$PATH:/usr/local/lib/node_modules/.bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -18,6 +20,8 @@ export PATH="$HOME/.fly/bin:$PATH"
 export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$HOME/.config/herd-lite/bin:$PATH"
 export PATH="$PATH:$HOME/go/bin"
+export JAVA_HOME=$(brew --prefix openjdk@25)
+export PATH=$JAVA_HOME/bin:$PATH
 # Deduplicate PATH (zsh feature)
 typeset -U path PATH
 
@@ -36,13 +40,6 @@ npm()     { unset -f npm;     load-nvm; npm "$@"; }
 npx()     { unset -f npx;     load-nvm; npx "$@"; }
 corepack(){ unset -f corepack; load-nvm; corepack "$@"; }
 
-# Optional: auto-use .nvmrc on cd (quiet)
-autoload -Uz add-zsh-hook
-use-nvmrc() { [[ -f .nvmrc ]] && nvm use &>/dev/null || true }
-add-zsh-hook chpwd use-nvmrc
-
-# DO NOT force Homebrew’s Node ahead of nvm (remove this if present):
-# export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 
 # ----- Aliases -----
 alias chrome='open -a "Google Chrome"'
@@ -66,3 +63,46 @@ if [[ -n $NVIM ]]; then
   [[ -r ~/.zprofile ]] && source ~/.zprofile
   export TERM=xterm-256color
 fi
+
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
+fi
+
+nvm use node > /dev/null 2>&1
+
+export NATSEC_ENABLED=true
+export NATSEC_PASSWORD=PASSWORD
+export NATSEC_USER=TEST
+export ADDRESSING_API_KEY=CsEfKfxDnR81aFV1x60MIa1vE2bVpZf01B55qAvx
+export IMAGE_API_KEY=0MNBy4DwrW9802Jw288Y43RNqwElJr17akTO4DDD
+
+natdiff() {
+    if [ -z "$1" ]; then
+        echo "Usage: natdiff <filename>"
+        return 1
+    fi
+    
+    diff "Natural-Libraries/DLSYST/SRC/$1" "Natural-Libraries/AWSBATCH/SRC/$1"
+}
+
+rgf () {
+  if [ -z "$1" ]; then
+      echo "Usage: rgf <filename>"
+      return 1
+  fi
+  rg . -g "$1" | fzf | cut -d: -f1 | xargs nvim
+}
+
+dcat () {
+  
+  if [ -z "$1" ]; then
+      echo "Usage: rgf <filepath>"
+      return 1
+  fi
+  docker exec -it d90-d90-1 cat "$1"
+}
+
+dexec () {
+  docker exec -it d90-d90-1 bash
+}
