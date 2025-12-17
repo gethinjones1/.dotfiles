@@ -55,3 +55,7 @@ if [[ -n $NVIM ]]; then
   export TERM=xterm-256color
 fi
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/gethin/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
