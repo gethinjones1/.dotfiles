@@ -74,3 +74,6 @@ export PATH="$HOME/bin:$PATH"
 eval "$(starship init zsh)"
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Added by Antigravity
+export PATH="/Users/gethin/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
