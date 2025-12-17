@@ -7,9 +7,6 @@ plugins=(git)
 source "$ZSH/oh-my-zsh.sh"
 
 fpath+=(/opt/homebrew/share/zsh/site-functions)
-# Pure prompt (keep if you like Pure; otherwise remove these 2 lines and set a theme)
-autoload -U promptinit; promptinit
-prompt pure
 
 source <(fzf --zsh)
 
@@ -52,3 +49,18 @@ if [[ -n $NVIM ]]; then
   export TERM=xterm-256color
 fi
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+
+dcat () {
+  docker cp d90-d90-1:"$1" - 
+}
+
+dexec () {
+  docker exec d90-d90-1 "$@"
+}
+
+dexect () {
+  docker exec -it d90-d90-1 bash
+}
+export PATH="$HOME/bin:$PATH"
+eval "$(starship init zsh)"
