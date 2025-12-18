@@ -4,8 +4,9 @@ return {
   {
     "saghen/blink.cmp",
     lazy = false, -- ← critical: loads before LazyVim's VeryLazy stuff
-    version = false,
-
+    version = "v1.*", -- Use stable release with prebuilt binaries
+    build = "cargo build --release",
+    implementation = "prefer_rust_with_warning",
     opts = {
       keymap = {
         preset = "super-tab",
