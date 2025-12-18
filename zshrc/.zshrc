@@ -15,14 +15,17 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="$HOME/.fly/bin:$PATH"
 export PATH="$HOME/.config/herd-lite/bin:$PATH"
 export PATH="$PATH:$HOME/go/bin"
-export JAVA_HOME=$(brew --prefix openjdk@25)
+export JAVA_HOME="/opt/homebrew/opt/openjdk@25"
 export PATH=$JAVA_HOME/bin:$PATH
 # Deduplicate PATH (zsh feature)
 typeset -U path PATH
 
-# ----- NVM: lazy-load + no heavy bash completion -----
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm "$@"
+}
 
 
 # ----- Aliases -----
@@ -64,3 +67,5 @@ dexect () {
 }
 export PATH="$HOME/bin:$PATH"
 eval "$(starship init zsh)"
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
